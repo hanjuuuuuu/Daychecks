@@ -1,29 +1,16 @@
 package com.example.daycheck
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
-import android.media.Ringtone
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import android.provider.MediaStore
-import android.util.Log
-import android.view.View
 import android.widget.*
-import androidx.versionedparcelable.VersionedParcelize
-import java.io.BufferedWriter
-import java.io.File
 import java.io.FileOutputStream
-import java.io.FileWriter
 import java.util.*
 
 //하루 기록 화면
 class DayActivity : AppCompatActivity() {
-    //private var person: Person? = null
+
     private var mood: String = ""
     private var symptom: String = ""
     private var isExercising: String = ""
@@ -33,14 +20,26 @@ class DayActivity : AppCompatActivity() {
 
     lateinit var saveBtn: Button
     lateinit var backBtn: Button
+    lateinit var dateView: TextView
 
     var fname: String = ""
     var str: String = ""
 
+    lateinit var mood_radio: RadioGroup
     lateinit var exercising_radio: RadioGroup
     lateinit var drink_radio: RadioGroup
     lateinit var smoking_radio: RadioGroup
     lateinit var sleeping_radio: RadioGroup
+    lateinit var mood1: RadioButton
+    lateinit var mood2: RadioButton
+    lateinit var mood3: RadioButton
+    lateinit var mood4: RadioButton
+    lateinit var mood5: RadioButton
+    lateinit var symptom1: CheckBox
+    lateinit var symptom2: CheckBox
+    lateinit var symptom3: CheckBox
+    lateinit var symptom4: CheckBox
+    lateinit var symptom5: CheckBox
     lateinit var ex_zero : RadioButton
     lateinit var ex_30m : RadioButton
     lateinit var ex_1h: RadioButton
@@ -60,10 +59,22 @@ class DayActivity : AppCompatActivity() {
         //사용할 id 연결
         saveBtn = findViewById(R.id.save_Btn)
         backBtn = findViewById(R.id.back_Btn)
+        dateView = findViewById(R.id.dateView)
+        mood_radio = findViewById(R.id.mood_radio)
         exercising_radio = findViewById(R.id.exercising_radio)
         drink_radio = findViewById(R.id.drink_radio)
         smoking_radio = findViewById(R.id.smoking_radio)
         sleeping_radio = findViewById(R.id.sleeping_radio)
+        mood1 = findViewById(R.id.mood1)
+        mood2 = findViewById(R.id.mood2)
+        mood3 = findViewById(R.id.mood3)
+        mood4 = findViewById(R.id.mood4)
+        mood5 = findViewById(R.id.mood5)
+        symptom1 = findViewById(R.id.symptom1)
+        symptom2 = findViewById(R.id.symptom2)
+        symptom3 = findViewById(R.id.symptom3)
+        symptom4 = findViewById(R.id.symptom4)
+        symptom5 = findViewById(R.id.symptom5)
         ex_zero = findViewById(R.id.ex_zero)
         ex_30m = findViewById(R.id.ex_30m)
         ex_1h = findViewById(R.id.ex_1h)
@@ -76,7 +87,32 @@ class DayActivity : AppCompatActivity() {
         sleep_9h = findViewById(R.id.sleep_9h)
 
 
-
+        //기분 선택
+        mood_radio.setOnCheckedChangeListener { radioGroup, checkedId ->
+            when(checkedId){
+                R.id.mood1 -> mood = "최고에요"
+                R.id.mood2 -> mood = "좋아요"
+                R.id.mood3 -> mood = "보통이에요"
+                R.id.mood4 -> mood = "안좋아요"
+                R.id.mood5 -> mood = "최악이에요"
+            }
+        }
+        //증상 선택
+        symptom1.setOnClickListener {
+            symptom += "안면홍조 "
+        }
+        symptom2.setOnClickListener {
+            symptom += "근육통 "
+        }
+        symptom3.setOnClickListener {
+            symptom += "불면증 "
+        }
+        symptom4.setOnClickListener {
+            symptom += "식은땀 "
+        }
+        symptom5.setOnClickListener {
+            symptom += "감정기복"
+        }
         //운동 시간 선택
         exercising_radio.setOnCheckedChangeListener{radioGroup, checkedId ->
             when(checkedId){
@@ -104,32 +140,36 @@ class DayActivity : AppCompatActivity() {
             }
         }
 
+        if (intent.hasExtra("todaydate")) {
+            dateView.text = intent.getStringExtra("todaydate")
+        } else {
+            Toast.makeText(this, "Error!", Toast.LENGTH_SHORT).show()
+        }
 
         //저장 버튼을 누르면 데이터 전달
         saveBtn.setOnClickListener {
-            val sharedPreferences = getSharedPreferences("persondata",0)
+            //var date = intent.getStringExtra("date")
+            //var date = 1
+            var todaydate = dateView.text
+            var sharedPreferences = getSharedPreferences("$todaydate",0)
             val editor = sharedPreferences.edit()
+            editor.putString("mood", mood)
+            editor.putString("symptom", symptom)
             editor.putString("Exercising", isExercising)
             editor.putString("Drinking", isDrinked)
             editor.putString("Smoking", isSmoking)
             editor.putString("Sleeping", isSleeping)
             editor.apply()
 
-            val intent = Intent(this, MainActivity::class.java)
-
-            //intent.putExtra("Exercising",isExercising)
-            //intent.putExtra("Drinking", isDrinked)
-            //intent.putExtra("Smoking", isSmoking)
-            //intent.putExtra("Sleeping", isSleeping)
-
-            //saveData(fname)
+            val intent = Intent(this, CalActivity::class.java)
+            intent.putExtra("date", todaydate)
             startActivity(intent)
 
         }
 
         //취소 버튼을 누르면 전으로 이동
         backBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CalActivity::class.java)
             startActivity(intent)
         }
 
