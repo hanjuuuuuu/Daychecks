@@ -9,7 +9,7 @@ import java.io.FileOutputStream
 import java.util.*
 
 //하루 기록 화면
-class DayActivity : AppCompatActivity() {
+class DayActivity: AppCompatActivity() {
 
     private var mood: String = ""
     private var symptom: String = ""
@@ -22,8 +22,6 @@ class DayActivity : AppCompatActivity() {
     lateinit var backBtn: Button
     lateinit var dateView: TextView
 
-    var fname: String = ""
-    var str: String = ""
 
     lateinit var mood_radio: RadioGroup
     lateinit var exercising_radio: RadioGroup
@@ -173,19 +171,6 @@ class DayActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
-    @SuppressLint("WrongConstant")
-    fun saveData(personBody: String){
-
-        try {
-            var fos: FileOutputStream = openFileOutput(personBody, MODE_PRIVATE)
-            var content: String = isExercising + isDrinked + isSmoking + isSleeping
-            fos.write(content.toByteArray())
-            fos.close()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
 
 

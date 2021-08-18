@@ -163,47 +163,47 @@
 
         <RadioButton
             android:id="@+id/sleep_5h"
-            android:layout_width="86dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="86dp"
             android:button="?attr/popupMenuBackground"
             android:checked="false"
             android:drawableTop="@drawable/radiobutton2"
-            android:text="     6시간 미만" />
+            android:text="  6시간 미만" />
 
         <RadioButton
             android:id="@+id/sleep_6h"
-            android:layout_width="75dp"
+            android:layout_width="70dp"
             android:layout_height="81dp"
             android:button="?attr/popupMenuBackground"
             android:drawableTop="@drawable/radiobutton2"
-            android:text="     6시간" />
+            android:text="      6시간" />
 
         <RadioButton
             android:id="@+id/sleep_7h"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="81dp"
             android:layout_weight="1"
             android:button="?attr/popupMenuBackground"
             android:drawableTop="@drawable/radiobutton2"
-            android:text="    7시간" />
+            android:text="      7시간" />
 
         <RadioButton
             android:id="@+id/sleep_8h"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="81dp"
             android:layout_weight="1"
             android:button="?attr/popupMenuBackground"
             android:drawableTop="@drawable/radiobutton2"
-            android:text="     8시간" />
+            android:text="       8시간" />
 
         <RadioButton
             android:id="@+id/sleep_9h"
             android:layout_width="73dp"
-            android:layout_height="match_parent"
+            android:layout_height="84dp"
             android:layout_weight="1"
             android:button="?attr/popupMenuBackground"
             android:drawableTop="@drawable/radiobutton2"
-            android:text="     8시간 이상" />
+            android:text="   8시간 이상" />
     </RadioGroup>
 
     <RadioGroup
@@ -384,12 +384,12 @@
         android:id="@+id/symptom1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:button="?attr/popupMenuBackground"
         android:drawableTop="@drawable/radiobutton2"
         android:text="안면홍조"
         app:layout_constraintEnd_toStartOf="@+id/symptom2"
-        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -397,7 +397,13 @@
         android:id="@+id/dateView"
         android:layout_width="102dp"
         android:layout_height="0dp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="11dp" />
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/back_Btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
