@@ -1,11 +1,9 @@
 package com.example.daycheck
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import java.io.FileOutputStream
 import java.util.*
 
 //하루 기록 화면

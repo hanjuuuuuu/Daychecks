@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.CalendarView
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import java.util.*
 
 //달력 화면
@@ -36,6 +32,8 @@ class CalActivity : AppCompatActivity() {
 
         //액션바 타이틀 없애기
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         //사용할 id 연결
         addBtn = findViewById(R.id.add_Btn)
@@ -66,20 +64,25 @@ class CalActivity : AppCompatActivity() {
             personsmoking.text = SharedPreferences.getString("Smoking", "-")
             personsleep.text = SharedPreferences.getString("Sleeping", "-")
 
-            if(personmood.text == "최고에요"){
-                imageView.setImageResource(R.drawable.mood01);
-            }
-            else if(personmood.text == "좋아요"){
-                imageView.setImageResource(R.drawable.mood02);
-            }
-            else if(personmood.text == "보통이에요"){
-                imageView.setImageResource(R.drawable.mood03);
-            }
-            else if(personmood.text == "안좋아요"){
-                imageView.setImageResource(R.drawable.mood04);
-            }
-            else if(personmood.text == "최악이에요"){
-                imageView.setImageResource(R.drawable.mood05);
+            when (personmood.text) {
+                "최고에요" -> {
+                    imageView.setImageResource(R.drawable.mood1_2);
+                }
+                "좋아요" -> {
+                    imageView.setImageResource(R.drawable.mood2_2);
+                }
+                "보통이에요" -> {
+                    imageView.setImageResource(R.drawable.mood3_2);
+                }
+                "안좋아요" -> {
+                    imageView.setImageResource(R.drawable.mood4_2);
+                }
+                "최악이에요" -> {
+                    imageView.setImageResource(R.drawable.mood5_2);
+                }
+                "-" -> {
+                    imageView.setImageResource(R.drawable.radiobutton)
+                }
             }
         }
 
@@ -95,21 +98,25 @@ class CalActivity : AppCompatActivity() {
 
     }
 
-    //툴바 메뉴 버튼 설정
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.option_menu, menu)
-        var infoItem: MenuItem? = menu?.findItem(R.id.info)
 
+    //툴바 메뉴 버튼 설정
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        //var infoItem: MenuItem? = menu?.findItem(R.id.info)
+        //var exItem: MenuItem? = menu?.findItem(R.id.ex)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.info -> {
-                Intent(this, InfoActivity::class.java)
+                val intent = Intent(this, InfoActivity::class.java)
                 startActivity(intent)
             }
-
+            R.id.ex -> {
+                val intent = Intent(this, SettingProfileActivity::class.java)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

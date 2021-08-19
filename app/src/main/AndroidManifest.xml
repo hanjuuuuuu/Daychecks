@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".DayActivity"></activity>
-        <activity android:name=".CalActivity" >
+        <activity android:name=".SettingProfileActivity"></activity>
+        <activity android:name=".DayActivity" />
+        <activity android:name=".InfoActivity"/>
+        <activity android:name=".CalActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

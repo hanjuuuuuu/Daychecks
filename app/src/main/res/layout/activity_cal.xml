@@ -86,14 +86,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        app:itemIconTint="@color/cardview_dark_background"
-        app:itemTextColor="#A39D9D"
+        app:itemIconTint="@drawable/navigation_color"
+        app:itemTextColor="@drawable/navigation_color"
+        app:backgroundTint="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:menu="@menu/menu_bottom" />
 
     <TextView
@@ -104,14 +105,14 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diaryTextView" />
 
     <TextView
         android:id="@+id/person_symptom"
-        android:layout_width="134dp"
-        android:layout_height="32dp"
+        android:layout_width="144dp"
+        android:layout_height="34dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
@@ -140,7 +141,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diaryTextView" />
 
@@ -172,22 +173,23 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:text="기분"
         app:layout_constraintBottom_toTopOf="@+id/person_mood"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diaryTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/diaryTextView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="80dp"
         android:text="증상"
         app:layout_constraintBottom_toTopOf="@+id/person_mood"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/diaryTextView"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -207,40 +209,47 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="33dp"
         android:text="음주"
         app:layout_constraintBottom_toTopOf="@+id/person_drink"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="34dp"
         android:text="흡연"
         app:layout_constraintBottom_toTopOf="@+id/person_drink"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="57dp"
         android:text="수면 시간"
         app:layout_constraintBottom_toTopOf="@+id/person_drink"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="49dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/person_symptom"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/diaryTextView"
-        app:srcCompat="@drawable/mood01" />
+        app:layout_constraintTop_toBottomOf="@+id/diaryTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
